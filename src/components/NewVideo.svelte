@@ -1,5 +1,6 @@
 <script lang="typescript">
     import { salt, ntos } from '../stores/store'
+    import { fade } from 'svelte/transition'
 
     let videoUrl: string
     let videoName: string
@@ -93,7 +94,7 @@
 		justify-content: center;
 		width: 50vw;
 		font-size: 1.2rem;
-		background-color: lightblue;
+		background-color: rgb(173, 230, 187);
 		padding-left:1rem;
 	}
 
@@ -113,7 +114,7 @@
 
 </style>
 
-     <div class="dev">
+     <div class="dev" in:fade={{duration: 500}} >
         {#if newLink}
              <p>Here is the links for the users:</p>
              <a href="{`data:${data}`}" download="{`links_${videoDate}_${videoGroup}_${videoName}.json`}">download JSON</a>

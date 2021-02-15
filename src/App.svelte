@@ -107,10 +107,11 @@
 					headers: {
 						'Content-Type': 'application/json'
 					}
-				})
+			  	})
 				videoId = vidData.videoId
 				sUrl = `${(import.meta.env.SNOWPACK_PUBLIC_DATABASE_URL)}data/${dataDate}/${videoId}/${uId}.json`
-				linkValid = true
+				console.log("link valid")
+				//linkValid = true
 			}else{
 				linkValid = false
 				console.log("It aint valid")
@@ -170,6 +171,7 @@
 	// DEVMODE STUFF
 	const devCode = 'd,e,v,m'
 	let cheatCode : any[] = []
+	
 	document.onkeypress = (event) => {
 		let char = (typeof event !== 'undefined') ? event.key : ''
 		//console.log("char is",char)
