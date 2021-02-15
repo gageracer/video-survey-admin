@@ -7,7 +7,7 @@
     // Checking the form inputs
     const checkInputs = () => {
         const userIdCheck = userId.match(/[0-9]/g)!.toString()  ? userId : null
-        const userGroupCheck = userGroup.length == 2
+        const userGroupCheck = userGroup.length == 1 && userGroup.match(/[a-z]/)
 
         return userIdCheck && userGroupCheck 
     }
@@ -77,6 +77,6 @@
         <p>All are mandatory. User ID:</p>
         <input type="text" placeholder="example: 1234" bind:value={userId} maxlength="8">
         <p>User Group:</p>
-        <input type="text" placeholder="example: a1" bind:value={userGroup} maxlength="2">
+        <input type="text" placeholder="example: a" bind:value={userGroup} maxlength="1">
         <button on:click={submitUser}>Submit</button>
      </div>
