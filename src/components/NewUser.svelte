@@ -21,10 +21,8 @@
                 method: 'PUT',
                 body: JSON.stringify(
                     {   
-                        videoId: videoId,
                         visited: 0,
                         group: userGroup,
-                        name: videoName
                 }),
                 headers: {
                     'Content-Type': 'application/json'
