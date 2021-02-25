@@ -17,9 +17,8 @@
         const regex = /(?<=\?v=).{11}/
         videoId = videoUrl ? videoUrl.match(regex)!.toString() : null
         const videoDateCheck = videoDate ? videoDate : null
-        const videoGroupCheck = videoGroup.length == 2
-        const videoNameCheck = videoName || null
-        return videoId && videoDateCheck && videoGroupCheck && videoNameCheck
+        const videoGroupCheck = videoGroup.length == 1
+        return videoId && videoDateCheck && videoGroupCheck
     }
 
     // Sending the new video to db
@@ -28,7 +27,7 @@
 
         try {
             newLink = false
-            const resVid = await fetch(`${(import.meta.env.SNOWPACK_PUBLIC_VIDEO_URL)}videoList/${videoDate}/${videoGroup[0]}/${videoGroup[1]}.json`,{
+            const resVid = await fetch(`${(import.meta.env.SNOWPACK_PUBLIC_VIDEO_URL)}videoList/${videoDate}/${videoGroup}.json`,{
                 method: 'PUT',
                 body: JSON.stringify(
                     {   
@@ -65,7 +64,7 @@
         
         try{
             // Checking if the userID is true
-                const resId= await fetch(`${(import.meta.env.SNOWPACK_PUBLIC_USER_URL)}userId/${v[0]}.json`)
+                const resId= await fetch(`${(import.meta.env.SNOWPACK_PUBLIC_USER_URL)}userId/${v}.json`)
                 let idData = Object.keys(await resId.json())
                 idData.forEach(el => {
                     //console.log(el)
@@ -125,7 +124,7 @@
         <input type="text" placeholder="example: a1" bind:value={videoGroup}>
         <p>Video Date to Watch:</p>
         <input type="date" placeholder="example: 02-09 (month-day)" bind:value={videoDate}>
-        <p>Video Name:</p>
-        <input type="text" placeholder="example: Maradona" bind:value={videoName}>
+        <!-- <p>Video Name:</p>
+        <input type="text" placeholder="example: Maradona" bind:value={videoName}> -->
         <button on:click={submitVideo}>Submit</button>
      </div>

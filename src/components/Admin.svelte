@@ -72,8 +72,8 @@
         <p>Parameters: {paramNum}</p>
         <p>{userAgent}</p> 
         <div>
-            <button on:click="{() => currentPanel = Page.Video}">Add Video</button>
-            <button on:click="{() => currentPanel = Page.User}">Add User</button>
+            <!-- <button on:click="{() => currentPanel = Page.Video}">Add Video</button> -->
+            <button on:click="{() => currentPanel = Page.User}">Add Users & Videos</button>
         </div>
     </div>
 

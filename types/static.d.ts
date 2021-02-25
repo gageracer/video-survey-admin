@@ -58,3 +58,4 @@ declare module '*.png' {
 
 /* CUSTOM: ADD YOUR OWN HERE */
 declare module 'svelte-youtube';
+declare module 'papaparse';

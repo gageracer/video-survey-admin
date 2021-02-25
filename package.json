@@ -5,6 +5,7 @@
     "test": "web-test-runner \"src/**/*.test.ts\""
   },
   "dependencies": {
+    "papaparse": "^5.3.0",
     "svelte": "^3.24.0"
   },
   "devDependencies": {
@@ -15,6 +16,7 @@
     "@testing-library/svelte": "^3.0.0",
     "@types/chai": "^4.2.13",
     "@types/mocha": "^8.2.0",
+    "@types/papaparse": "^5.2.5",
     "@types/snowpack-env": "^2.3.2",
     "@web/test-runner": "^0.12.0",
     "chai": "^4.2.0",
