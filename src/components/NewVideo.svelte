@@ -1,5 +1,5 @@
 <script lang="typescript">
-    import { salt, ntos } from '../stores/store'
+    import { salt, ntos, speDec } from '../stores/store'
     import { fade } from 'svelte/transition'
 
     let videoUrl: string
@@ -27,7 +27,7 @@
 
         try {
             newLink = false
-            const resVid = await fetch(`${(import.meta.env.SNOWPACK_PUBLIC_VIDEO_URL)}videoList/${videoDate}/${videoGroup}.json`,{
+            const resVid = await fetch(`${speDec(import.meta.env.SNOWPACK_PUBLIC_VIDEO_URL)}videoList/${videoDate}/${videoGroup}.json`,{
                 method: 'PUT',
                 body: JSON.stringify(
                     {   
@@ -64,7 +64,7 @@
         
         try{
             // Checking if the userID is true
-                const resId= await fetch(`${(import.meta.env.SNOWPACK_PUBLIC_USER_URL)}userId/${v}.json`)
+                const resId= await fetch(`${speDec(import.meta.env.SNOWPACK_PUBLIC_USER_URL)}userId/${v}.json`)
                 let idData = Object.keys(await resId.json())
                 idData.forEach(el => {
                     //console.log(el)
@@ -82,6 +82,8 @@
         newLink = true
 		return true
     }
+
+
 </script>
 
 <style>
@@ -116,7 +118,7 @@
      <div class="dev" in:fade={{duration: 500}} >
         {#if newLink}
              <p>Here is the links for the users:</p>
-             <a href="{`data:${data}`}" download="{`links_${videoDate}_${videoGroup}_${videoName}.json`}">download JSON</a>
+             <a href="{`data:${data}`}" download="{`links_${videoDate}.json`}">download JSON</a>
         {/if}
         <p>All are mandatory. Youtube Video Link:</p>
         <input type="text" placeholder="example: https://www.youtube.com/watch?v=lo2GmBahoyI" bind:value={videoUrl}>

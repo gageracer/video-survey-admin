@@ -30,6 +30,35 @@ export const stonA =  (str: string) => {
 
 export const salt = readable(stonA("PjbJ"), set => { set(stonA("PjbU"))})
 
+export const speEnc = (num: string) => {
+    let result = ""
+    // turn the string to number Array
+    let arr = stonA(num)
+    // get the salt
+    let slt = get(salt).reduce((acc, cur) => acc ^ cur)
+    // decrypt the message
+    for (const key of arr) {
+        result += String.fromCharCode(key ^ slt)
+    }
+    console.log(num.length == result.length && num.length)
+    return result
+}
+
+export const speDec = (num: string) => {
+    let result = ""
+    // turn the string to number Array
+    let arr = stonA(decodeURI(num))
+
+    // get the salt
+    let slt = get(salt).reduce((acc, cur) => acc ^ cur)
+
+    // decrypt the message
+    for (const key of arr) {
+        result += String.fromCharCode(key ^ slt)
+    }
+    return result
+}
+
 export const ntos = (num: number[]) => {
     let result = ""
     for (const key of num) {

@@ -1,6 +1,6 @@
 <script lang="typescript">
     import { fade } from 'svelte/transition'
-    import { salt, ntos } from '../stores/store'
+    import { salt, ntos, speDec } from '../stores/store'
     import Papa from 'papaparse'
 
 
@@ -131,7 +131,7 @@
     // Sending the new video to db
     const submitUser =  async() => {
             try {
-                const resVid = await fetch(`${(import.meta.env.SNOWPACK_PUBLIC_USER_URL)}userId.json`,{
+                const resVid = await fetch(`${speDec(import.meta.env.SNOWPACK_PUBLIC_USER_URL)}userId.json`,{
                     method: 'PATCH',
                     body: JSON.stringify(groupData),
                     headers: {
@@ -164,7 +164,7 @@
     // Sending the new video to db
     const submitVideo = async() => {
             try {
-                const resVid = await fetch(`${(import.meta.env.SNOWPACK_PUBLIC_VIDEO_URL)}videoLink.json`,{
+                const resVid = await fetch(`${speDec(import.meta.env.SNOWPACK_PUBLIC_VIDEO_URL)}videoLink.json`,{
                     method: 'PATCH',
                     body: JSON.stringify(videosData),
                     headers: {
