@@ -187,7 +187,7 @@
 
     const generateLinks = () => {
         if(!(submitVideo() && submitUser())){ return false}
-        const link = (d: string,i:number,v:string,r:string) => {return { [i] : `https://whatsappstudy2021.vercel.app/?d=${d}&i=${i}&v=${v}&r=${r}`} }
+        const link = (d: string,i:string,v:string,r:string) => {return { [i] : `https://whatsappstudy2021.vercel.app/?d=${d}&i=${i}&v=${v}&r=${r}`} }
         downloadLinks = []
         for (const date in videosData) {
             const mydate = date
@@ -200,10 +200,10 @@
                 for (const usr in groupData){
                     if(groupData[usr][mydate].groups.includes(grp)){
                         console.log(usr)
-                        const id = parseInt(usr!,10)
+                        const id = parseInt(usr?.charCodeAt(7).toString(4)!,10)
                         const mid = date ^ id ^ vidId
                         const result = ntos($salt.map( x => (x ^ mid) % 512))
-                        downloadLinks = downloadLinks ? [...downloadLinks, link(d,id,v,result)] : [link(d,id,v,result)]
+                        downloadLinks = downloadLinks ? [...downloadLinks, link(d,usr,v,result)] : [link(d,usr,v,result)]
                     }
                 }
             }
@@ -248,7 +248,7 @@
      <div class="dev" in:fade={{duration: 500}} >
         {#if downloadLink}
              <p>Here is the links for the users:</p>
-             <a href="{`data:${data}`}" download="{`links_${videoDate}_${videoGroup}_${videoName}.json`}">download JSON</a>
+             <a href="{`data:${data}`}" download="{`links_${videoDate}.json`}">download JSON</a>
         {/if}
         <!-- <p>All are mandatory. User ID:</p>
         <input type="text" placeholder="example: 1234" bind:value={userId} maxlength="8">

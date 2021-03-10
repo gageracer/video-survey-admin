@@ -118,7 +118,7 @@
      <div class="dev" in:fade={{duration: 500}} >
         {#if newLink}
              <p>Here is the links for the users:</p>
-             <a href="{`data:${data}`}" download="{`links_${videoDate}.json`}">download JSON</a>
+             <a href="{`data:${data}`}" download="{`links.json`}">download JSON</a>
         {/if}
         <p>All are mandatory. Youtube Video Link:</p>
         <input type="text" placeholder="example: https://www.youtube.com/watch?v=lo2GmBahoyI" bind:value={videoUrl}>
