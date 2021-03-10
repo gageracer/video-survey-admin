@@ -60,7 +60,7 @@
         const date = parseInt(d?.slice(-4)!,10)
         const vidId = parseInt(v.charCodeAt(0).toString(4),10)
         
-        const link = (d: string,i:number,v:string,r:string) => {return { [i] : `https://whatsappstudy2021.vercel.app/?d=${d}&i=${i}&v=${v}&r=${r}`} }
+        const link = (d: string,i:string,v:string,r:string) => {return { [i] : `https://whatsappstudy2021.vercel.app/?d=${d}&i=${i}&v=${v}&r=${r}`} }
         
         try{
             // Checking if the userID is true
@@ -68,10 +68,10 @@
                 let idData = Object.keys(await resId.json())
                 idData.forEach(el => {
                     //console.log(el)
-                    const id = parseInt(el!,10)
+                    const id = parseInt(el?.charCodeAt(7).toString(4)!,10)
                     const mid = date ^ id ^ vidId
                     const result = ntos($salt.map( x => (x ^ mid) % 512))
-                    newLinks = newLinks ? [...newLinks, link(d,id,v,result)] : [link(d,id,v,result)]
+                    newLinks = newLinks ? [...newLinks, link(d,el,v,result)] : [link(d,el,v,result)]
                     //console.log(newLinks)
                 });
         }
